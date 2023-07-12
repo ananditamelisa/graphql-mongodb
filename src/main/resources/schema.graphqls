@@ -1,0 +1,38 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+    notificationUsers: [NotificationUser]
+    notificationUser(id: String): NotificationUser
+}
+
+type Mutation {
+  createNotificationUser(input: UserInput): NotificationUser
+}
+
+type UserInput {
+    email: String
+    phoneNumber: String
+    subscriptions: [NotificationSubscription]
+}
+
+type NotificationUser {
+    id: String
+    email: String
+    phoneNumber: String
+    subscriptions: [NotificationSubscription]
+    eventTopics: [NotificationEvent]
+}
+
+type NotificationSubscription {
+    eventCode: String
+    channels: [String!]!
+}
+
+type NotificationEvent {
+    id : String
+    eventCode: String
+    topic: String
+}
